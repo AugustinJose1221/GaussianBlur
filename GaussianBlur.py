@@ -58,7 +58,6 @@ def GaussianBlurImage(image, sigma):
             x1 = 2*np.pi*(sigma**2)
             x2 = np.exp(-(x**2 + y**2)/(2* sigma**2))
             gaussian_filter[x+m, y+n] = (1/x1)*x2
-    
     im_filtered = np.zeros_like(image, dtype=np.float32)
     for c in range(3):
         im_filtered[:, :, c] = convolution(image[:, :, c], gaussian_filter)    
