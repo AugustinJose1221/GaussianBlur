@@ -13,7 +13,6 @@ def kernal(sigma, size):
     x = int((size+1)/2)
     d1 = 1/(sigma*((2*np.pi)**0.5))
     d2 = 2*(sigma**2)
-    G = []
     kernal = np.array([])
     for i in range(-x+1, x):
         g = d1*np.exp(-((i**2)/d2))
