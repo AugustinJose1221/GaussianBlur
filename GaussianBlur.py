@@ -12,11 +12,11 @@ def convolution(oldimage, kernel):
     #image = Image.fromarray(image, 'RGB')
     image_h = oldimage.shape[0]
     image_w = oldimage.shape[1]
-    
+    print(image_h)
     
     kernel_h = kernel.shape[0]
     kernel_w = kernel.shape[1]
-    
+    print(kernel_h)
     if(len(oldimage.shape) == 3):
         image_pad = np.pad(oldimage, pad_width=((kernel_h // 2, kernel_h // 2),(kernel_w // 2, kernel_w // 2),(0,0)), mode='constant', constant_values=0).astype(np.float32)    
     elif(len(oldimage.shape) == 2):
@@ -63,7 +63,7 @@ def GaussianBlurImage(image, sigma):
         im_filtered[:, :, c] = convolution(image[:, :, c], gaussian_filter)    
     return (im_filtered.astype(np.uint8))
 
-image = GaussianBlurImage("img/test.jpg", 6)
+image = GaussianBlurImage("img/test.jpg", 1)
 img = Image.fromarray(image, 'RGB')
 img.save('Output/Blur.jpg')
 img.show()
