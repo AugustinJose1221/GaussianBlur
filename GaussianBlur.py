@@ -59,17 +59,20 @@ def GaussianBlurImage(image, sigma):
             x2 = np.exp(-(x**2 + y**2)/(2* sigma**2))
             gaussian_filter[x+m, y+n] = (1/x1)*x2
     im_filtered = np.zeros_like(image, dtype=np.float32)
+    '''
     gaussian_filter = np.array([[0.00390625,0.015625,0.0234375,0.015625,0.00390625],
                                 [0.015625,0.0625,0.09375,0.0625,0.015625],
                                 [0.0234375,0.09375,0.140625,0.09375,0.0234375],
                                 [0.015625,0.0625,0.09375,0.0625,0.015625],
                                 [0.00390625,0.015625,0.0234375,0.015625,0.00390625]])
-    for c in range(3):
-        im_filtered[:, :, c] = convolution(image[:, :, c], gaussian_filter)  
-        print(gaussian_filter)
+    '''
+    im_filtered[:, :] = convolution(image[:, :], gaussian_filter)  
+    #for c in range(3):
+        #im_filtered[:, :, c] = convolution(image[:, :, c], gaussian_filter)  
+        #print(gaussian_filter)
     return (im_filtered.astype(np.uint8))
 
-image = GaussianBlurImage("img/test.jpg", 0.25)
-img = Image.fromarray(image, 'RGB')
-img.save('Output/Blur.jpg')
+image = GaussianBlurImage("img/gray1.jpg", 11)
+img = Image.fromarray(image, 'L')
+img.save('Output/GrayBlur2.jpg')
 img.show()
